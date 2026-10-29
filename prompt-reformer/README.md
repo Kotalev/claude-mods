@@ -67,7 +67,7 @@ The value is stored in `~/.claude/settings.json`:
 ```json
 {
   "pluginConfigs": {
-    "prompt-reformer@ivan-mods": {
+    "prompt-reformer@claude-mods": {
       "options": { "wordThreshold": 80 }
     }
   }
@@ -76,18 +76,20 @@ The value is stored in `~/.claude/settings.json`:
 
 ## Installation
 
-The mod is in the local `ivan-mods` marketplace (`/Users/ivanhristev/Projects/mods`) and is installed at user scope, so it is active in every project:
+The mod is part of the [`claude-mods`](https://github.com/Kotalev/claude-mods) marketplace. Install it at user scope, so it is active in every project:
 
 ```bash
-claude plugin marketplace add /Users/ivanhristev/Projects/mods
-claude plugin install prompt-reformer@ivan-mods --scope user
+claude plugin marketplace add Kotalev/claude-mods
+claude plugin install prompt-reformer@claude-mods --scope user
 ```
 
 To turn it off without uninstalling:
 
 ```bash
-claude plugin disable prompt-reformer@ivan-mods --scope user
+claude plugin disable prompt-reformer@claude-mods --scope user
 ```
+
+To get a newer version, run `claude plugin marketplace update claude-mods`, then `/reload-plugins` or start a new session.
 
 ## Development
 
@@ -97,10 +99,10 @@ claude plugin disable prompt-reformer@ivan-mods --scope user
 | `hooks/hooks.json` | Points to the hooks module |
 | `hooks/register.ts` | The mod: the `prompt.submit` hook, the `/reformer-threshold` command and the prompts sent to the model |
 
-Because the marketplace is a local folder, Claude Code reads the mod straight from this folder. After editing, run `/reload-plugins` in a session to pick up the change. To check the mod:
+To try local changes without installing, start Claude Code from the repository root with `claude --plugin-dir ./prompt-reformer`. To check the mod:
 
 ```bash
-claude plugin validate /Users/ivanhristev/Projects/mods/prompt-reformer
+claude plugin validate prompt-reformer
 ```
 
 The model used for questions and rewriting is set by `MODEL` in `hooks/register.ts` (`sonnet`). The instructions it follows are `QUESTIONS_SYSTEM` and `REWRITE_SYSTEM` in the same file.

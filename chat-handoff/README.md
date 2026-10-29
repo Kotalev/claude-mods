@@ -45,7 +45,7 @@ The context size is the number of input tokens of the last model response, the s
 **Terminal:** open `/config` and change the row **Handoff threshold (tokens)**, or from a shell:
 
 ```bash
-echo '{"threshold":"250000"}' | claude plugin configure chat-handoff@ivan-mods --values-stdin
+echo '{"threshold":"250000"}' | claude plugin configure chat-handoff@claude-mods --values-stdin
 ```
 
 **Desktop:** `/config` is not available there. Set the value in `~/.claude/settings.json`:
@@ -53,7 +53,7 @@ echo '{"threshold":"250000"}' | claude plugin configure chat-handoff@ivan-mods -
 ```json
 {
   "pluginConfigs": {
-    "chat-handoff@ivan-mods": {
+    "chat-handoff@claude-mods": {
       "options": { "threshold": 250000 }
     }
   }
@@ -64,21 +64,22 @@ Settings are shared, so a value set from the terminal also applies in Desktop.
 
 ## Installation
 
-The mod lives in the local marketplace `ivan-mods` (`~/Projects/mods`) and is installed at the user scope, so it loads in every project:
+The mod is part of the [`claude-mods`](https://github.com/Kotalev/claude-mods) marketplace. Install it at the user scope, so it loads in every project:
 
 ```bash
-claude plugin marketplace add ~/Projects/mods
+claude plugin marketplace add Kotalev/claude-mods
 ```
 
 ```bash
-claude plugin install chat-handoff@ivan-mods --scope user
+claude plugin install chat-handoff@claude-mods --scope user
 ```
 
-The plugin is read straight from this folder. After editing it, run `/reload-plugins` in the terminal or start a new session.
+To get a newer version, run `claude plugin marketplace update claude-mods`, then `/reload-plugins` or start a new session.
 
 ## Development
 
 - `hooks/register.tsx`: the hooks module (the threshold check, the band and the transfer).
 - `types/index.d.ts`: the state contract for the band.
-- `hooks/register.test.tsx`: tests. Run them with `claude plugin test .` in this folder.
-- Validate with `claude plugin validate .`.
+- `hooks/register.test.tsx`: tests. Run them with `claude plugin test chat-handoff` from the repository root.
+- Validate with `claude plugin validate chat-handoff`.
+- Try local changes without installing: `claude --plugin-dir ./chat-handoff`.

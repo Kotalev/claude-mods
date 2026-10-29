@@ -23,7 +23,7 @@ A Claude Code mod that lists the mods active for the current conversation, both 
 
 Errors from the `claude` CLI, such as a failed enable, are shown in red at the bottom of the pane.
 
-> Note: `mod-manager` lists itself under **Global**. Turning it off removes the `/mods` command and the pane until you turn it back on with `claude plugin enable mod-manager@ivan-mods`.
+> Note: `mod-manager` lists itself under **Global**. Turning it off removes the `/mods` command and the pane until you turn it back on with `claude plugin enable mod-manager@claude-mods`.
 
 ## How it works
 
@@ -39,21 +39,21 @@ The mod calls the same `claude` executable the session runs on (read from `CLAUD
 
 ## Installation
 
-The mod is distributed as a local marketplace (`ivan-mods`) whose root is this folder.
+The mod is part of the [`claude-mods`](https://github.com/Kotalev/claude-mods) marketplace.
 
 Add the marketplace and install the mod for all projects:
 
 ```bash
-claude plugin marketplace add /Users/ivanhristev/Projects/mods/mod-manager
+claude plugin marketplace add Kotalev/claude-mods
 ```
 
 ```bash
-claude plugin install mod-manager@ivan-mods --scope user
+claude plugin install mod-manager@claude-mods --scope user
 ```
 
 Use `--scope project` instead to install it for one project only.
 
-Because the marketplace is a folder, Claude Code reads the mod straight from this folder rather than from a cached copy. After editing the files, run `/reload-plugins` to pick up the change; no reinstall or version bump is needed.
+To get a newer version, run `claude plugin marketplace update claude-mods`, then `/reload-plugins` or start a new session.
 
 ## Configuration
 
@@ -64,8 +64,8 @@ What you can configure is through Claude Code itself:
 | What | How |
 | --- | --- |
 | Where the mod is active | Install at `--scope user` (all projects), `project` (shared via `.claude/settings.json`) or `local` (only you, this project). |
-| Turn the mod off | `claude plugin disable mod-manager@ivan-mods`, or its own switch in the pane. |
-| Uninstall | `claude plugin uninstall mod-manager@ivan-mods` |
+| Turn the mod off | `claude plugin disable mod-manager@claude-mods`, or its own switch in the pane. |
+| Uninstall | `claude plugin uninstall mod-manager@claude-mods` |
 
 ## Limitations
 
@@ -78,8 +78,7 @@ What you can configure is through Claude Code itself:
 ```text
 mod-manager/
 ├── .claude-plugin/
-│   ├── plugin.json        manifest
-│   └── marketplace.json   local marketplace "ivan-mods"
+│   └── plugin.json        manifest
 ├── hooks/
 │   ├── hooks.json         names the hooks module
 │   └── register.tsx       the mod: /mods command, pane, toggling
@@ -87,12 +86,14 @@ mod-manager/
 └── tests/mods.test.tsx    pane and toggle test
 ```
 
-Check and test the mod:
+Check and test the mod from the repository root:
 
 ```bash
-claude plugin validate /Users/ivanhristev/Projects/mods/mod-manager
+claude plugin validate mod-manager
 ```
 
 ```bash
-claude plugin test /Users/ivanhristev/Projects/mods/mod-manager
+claude plugin test mod-manager
 ```
+
+To try local changes without installing, start Claude Code with `claude --plugin-dir ./mod-manager`.

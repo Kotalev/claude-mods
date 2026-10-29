@@ -1,6 +1,9 @@
 {
-  "name": "ivan-mods",
-  "owner": { "name": "Ivan Hristev" },
+  "name": "claude-mods",
+  "owner": { "name": "Kotalev" },
+  "metadata": {
+    "description": "The team's Claude Code mods: hooks modules that add panes, bands and prompt helpers to the terminal and the desktop app"
+  },
   "plugins": [
     { "name": "mod-manager", "source": "./mod-manager" },
     { "name": "chat-handoff", "source": "./chat-handoff" },
