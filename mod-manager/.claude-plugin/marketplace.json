@@ -1,0 +1,5 @@
+{
+  "name": "ivan-mods",
+  "owner": { "name": "Ivan Hristev" },
+  "plugins": [{ "name": "mod-manager", "source": "./" }]
+}

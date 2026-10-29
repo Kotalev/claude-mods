@@ -1,0 +1,6 @@
+{
+  "name": "mod-manager",
+  "version": "0.1.0",
+  "description": "A /mods pane listing the global and project mods, with a switch to turn each on or off",
+  "types": "./types/index.d.ts"
+}

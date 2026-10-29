@@ -1,0 +1,9 @@
+{
+  "name": "ivan-mods",
+  "owner": { "name": "Ivan Hristev" },
+  "plugins": [
+    { "name": "mod-manager", "source": "./mod-manager" },
+    { "name": "chat-handoff", "source": "./chat-handoff" },
+    { "name": "prompt-reformer", "source": "./prompt-reformer" }
+  ]
+}

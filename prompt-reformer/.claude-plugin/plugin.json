@@ -1,0 +1,13 @@
+{
+  "name": "prompt-reformer",
+  "version": "0.1.0",
+  "description": "Offers to restructure long prompts into a clearer form, asking clarifying questions first, then puts the result in the prompt box ready to send.",
+  "userConfig": {
+    "wordThreshold": {
+      "type": "number",
+      "title": "Word threshold",
+      "description": "Prompts with more words than this get the reformat offer",
+      "default": 50
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "name": "chat-handoff",
+  "version": "0.1.0",
+  "description": "When a finished turn leaves the context past a token threshold, offers to carry the work over to a fresh chat with a generated handoff prompt",
+  "types": "./types/index.d.ts",
+  "userConfig": {
+    "threshold": {
+      "type": "number",
+      "title": "Handoff threshold (tokens)",
+      "description": "Context size in tokens at which a finished turn offers to move the work to a new chat",
+      "default": 300000
+    }
+  }
+}
